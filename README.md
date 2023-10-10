@@ -51,7 +51,7 @@ The code is in C++ and it requires the libraries:
 
     I opted for the OpenMPI implementation. This is the library I used to pass messages between the different nodes of the cluster. 
 
-To compile the project, I have included a makefile to be used with Intel's C++ compiler. You might have to modify that depending on where your libraries are located and the distribution of C++ you are using. As you can see from the makefile, PETSc uses its own linker. You still need to have an MPI distribution installed and have PETSc's linker configured to use that.
+To compile the project, I have included a makefile to be used with Intel's C++ compiler. You might have to modify that depending on where your libraries are located and the distribution of C++ you are using. As you can see from the makefile, PETSc uses its own linker. You still need to have an MPI distribution installed and have PETSc's linker configured accordingly.
 
 What and Where
 ---
@@ -59,9 +59,9 @@ The folder structure of the repository is:
 
  * *Mathematica*
 
-   Contains the Mathematica notebooks I used to write the equations of motion of Einstein-Maxwell-Dilaton including the DeTurck trick term in Einstein's equations. The subfolder "Background" contains the notebooks concerning the background geometries. The subfolder "Conductivity" contains the notebooks for the equations governing the computation of the optical conductivity.
+   Contains the Mathematica notebooks I used to write the equations of motion of Einstein-Maxwell-Scalar including the DeTurck trick term in Einstein's equations. The subfolder "Background" contains the notebooks concerning the background geometries. 
    
-   In case you find it useful, I have included the notebooks Thermo and CNotebook. These are used to manipulate the data and extract boundary theory quantities for the backgrounds and the conductivity perturbation respectively. Moreoever, they are used to generate the differentiation matrices for both finite differences as well as spectral methods.
+   In case you find it useful, I have included the notebooks Thermodynamics and CNotebook. These are used to manipulate the data and extract boundary theory quantities for the backgrounds and the conductivity perturbation respectively. Moreoever, they are used to generate the differentiation matrices for both finite differences as well as spectral methods.
 
  * *Sourcefiles*
 
@@ -69,8 +69,8 @@ The folder structure of the repository is:
 
 * *Background*
 
-  The program that constructs the gravitational backgrounds which are dual to a explicit lattice configuration on the conformal boundary field theory.
+  The program that constructs the gravitational backgrounds which are dual to the Abrikosov lattice on the conformal boundary field theory.
 
-* *Perturbation*
+* *Thermo*
 
-   The program that computes the optical conductivities of the holographic lattice.
+   The program that generates multiple solutions in order to study the thermodynamic properties of different unit cell configurations.
