@@ -22,7 +22,7 @@ Thermodynamics
 ---
 The program in the folder ["Thermo"](Thermo/main.cpp) can be used to construct multiple background solutions. For our purposes we held the temperature, chemical potential and external magnetic field fixed while varying the shape parameters of the lattice.
 
-<p>
+<p align="center">
 <img align="center" src="images/FE_T05.png" width=40% height=40%>
 </p>
 
