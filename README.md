@@ -51,7 +51,7 @@ The code is in C++ and it requires the libraries:
 
     I opted for the OpenMPI implementation. This is the library I used to pass messages between the different nodes of the cluster. 
 
-To compile the project, I have included a makefile to be used with Intel's C++ compiler. You might have to modify that depending on where your libraries are located and the distribution of C++ you are using.
+To compile the project, I have included a makefile to be used with Intel's C++ compiler. You might have to modify that depending on where your libraries are located and the distribution of C++ you are using. As you can see from the makefile, PETSc uses its own linker. You still need to have an MPI distribution installed and have PETSc's linker configured to use that.
 
 What and Where
 ---
