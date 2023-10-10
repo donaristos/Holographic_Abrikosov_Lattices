@@ -1,12 +1,12 @@
 # Holographic Abrikosov Lattices
 
-Welcome to the repository for the code used to generate the data as presented in ["Holographic Abrikosov Lattices"](https://arxiv.org/abs/2001.11510) by A. Donos, J. Gauntlett and C. Pantelidou. The purpose was to construct the holographic duals of thermal field theorie states corresponding to superfluids subject to external magnetic fields.
+Welcome to the repository for the code used to generate the data as presented in ["Holographic Abrikosov Lattices"](https://arxiv.org/abs/2001.11510) by A. Donos, J. Gauntlett and C. Pantelidou. The purpose was to construct the holographic duals of thermal field theory states corresponding to superfluids subject to external magnetic fields.
 
-These are field theory configurations which are parametrised by the shape of the unit cell of the vortical lattice. Our results prove that triangular vortex lattices are thermodynamically preferred. This is a significant result since our holographic approach is valid away from the critical temperature $T_c$ of the superlfuid phase formation.
+These are field theory configurations which are parametrised by the shape of the unit cell of the vortical lattice. Our results prove that triangular vortex lattices are thermodynamically preferred. This is a significant result since our holographic approach is valid away from the critical temperature $T_c$ of the superfluid phase formation.
 
-The technical task involved the solution of Einstein's non-linear equations of motion coupled to a Maxwell field and a complex scalar. Due to the formation of a vortical lattice of electric currents, the resulting elliptical problem is three dimenional. This is a significant step up  compared to the project ["Holographic Lattice Conductivity"](https://github.com/donaristos/Holographic_Lattice_Conductivity.git) which is in two dimensions.
+The technical task involved the solution of Einstein's non-linear equations of motion coupled to a Maxwell field and a complex scalar. Due to the formation of a vortical lattice of electric currents, the resulting elliptical problem is three dimensional. This is a significant step up  compared to the project ["Holographic Lattice Conductivity"](https://github.com/donaristos/Holographic_Lattice_Conductivity.git) which is in two dimensions.
 
-The code utilizes the Message Passing Iterface (MPI) along with OpenMP so that it can be used on larger clusters with a distributed memory architecture. In combination with the [PETSc](https://petsc.org/release/) library, I was able to use Durham University's ["Hamilton"](https://www.dur.ac.uk/arc/hamilton/) supercomputer.
+The code utilizes the Message Passing Interface (MPI) along with OpenMP so that it can be used on larger clusters with a distributed memory architecture. In combination with the [PETSc](https://petsc.org/release/) library, I was able to use Durham University's ["Hamilton"](https://www.dur.ac.uk/arc/hamilton/) supercomputer.
 
 The Black Brane Solutions
 ---
@@ -26,7 +26,7 @@ The program in the folder ["Thermo"](Thermo/main.cpp) can be used to construct m
 <img align="center" src="images/FE_T05.png" width=40% height=40%>
 </p>
 
-The figure shows a density plot of the fixed energy of the system as a function of the period $k$ and the angle parametrising the lattice unit cell. The red dot shows the configuration of minimum free energy which is an equilateral triangle. The temparature $T$ for this plot satisfies $T/T_c=1/2$.
+The figure shows a density plot of the fixed energy of the system as a function of the period $k$ and the angle parametrising the lattice unit cell. The red dot shows the configuration of minimum free energy which is an equilateral triangle. The temperature $T$ for this plot satisfies $T/T_c=1/2$.
 
 Libraries
 ---
@@ -37,11 +37,11 @@ The code is in C++ and it requires the libraries:
 
 2) [PETSc](https://petsc.org/release/)
 
-   Used the functionality of PARDISO_64 to find the inverse of the Hessian in Newton's method when using 64-bit floats. Especially powerfull when the Hessian is sparse (e.g. finite differences).
+   Used the functionality of PARDISO_64 to find the inverse of the Hessian in Newton's method when using 64-bit floats. Especially powerful when the Hessian is sparse (e.g. finite differences).
 
 3) [Mpreal](https://github.com/advanpix/mpreal)
 
-   Multiple precision arithetic library used to perform computations at arbitrary numerical precision.
+   Multiple precision arithmetic library used to perform computations at arbitrary numerical precision.
 
 4) [Boost](https://www.boost.org/)
 
@@ -61,7 +61,7 @@ The folder structure of the repository is:
 
    Contains the Mathematica notebooks I used to write the equations of motion of Einstein-Maxwell-Scalar including the DeTurck trick term in Einstein's equations. The subfolder "Background" contains the notebooks concerning the background geometries. 
    
-   In case you find it useful, I have included the notebooks Thermodynamics and CNotebook. These are used to manipulate the data and extract boundary theory quantities for the backgrounds and the conductivity perturbation respectively. Moreoever, they are used to generate the differentiation matrices for both finite differences as well as spectral methods.
+   In case you find it useful, I have included the notebooks Thermodynamics and CNotebook. These are used to manipulate the data and extract boundary theory quantities for the backgrounds and the conductivity perturbation respectively. Moreover, they are used to generate the differentiation matrices for both finite differences as well as spectral methods.
 
  * *Sourcefiles*
 
@@ -69,7 +69,7 @@ The folder structure of the repository is:
 
 * *Background*
 
-  The program that constructs the gravitational backgrounds which are dual to the Abrikosov lattice on the conformal boundary field theory.
+  The program that constructs the gravitational backgrounds which are dual to the Abrikosov lattice on the conformal boundary field. theory.
 
 * *Thermo*
 
