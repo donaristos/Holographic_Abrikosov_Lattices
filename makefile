@@ -1,5 +1,5 @@
 PETSC_DIR=$(HOME)/Downloads/C++/petsc
-PETSC_ARCH=arch-darwin-cxx-opt
+PETSC_ARCH=(your-PETSC_ARCH)
 
 
 include ${PETSC_DIR}/lib/petsc/conf/variables

@@ -35,7 +35,7 @@ The code is in C++ and it requires the libraries:
 
    Mostly used to store and manipulate the Hessian operator in Newton's method implementation. Also used its linear solvers for the flavour of the code that uses high precision numerics.
 
-2) [Intel MKL](https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html)
+2) [PETSc](https://petsc.org/release/)
 
    Used the functionality of PARDISO_64 to find the inverse of the Hessian in Newton's method when using 64-bit floats. Especially powerfull when the Hessian is sparse (e.g. finite differences).
 
@@ -47,8 +47,11 @@ The code is in C++ and it requires the libraries:
 
    Used for higher precision numerics.
 
-To compile the project, I have included a makefile to be used with Intel's C++ compiler. You might have to modify that depending on where your libraries are located and the distribution of C++ you are using. Note that in that makefile I am also linking to the [Suitespase](https://people.engr.tamu.edu/davis/suitesparse.html) libraries. This is because ["NewtonMethod"](NewtonMethod.cpp) has two separate implementations for inverting the Hessian in Newton's method. By default, I have commented out the implementation based on Suitesparse. I have found that Intel's solvers perform slightly better for this problem when using spectral methods. Feel free to experiment yourself!
+5) [OpenMPI](https://www.open-mpi.org/)
 
+    I opted for the OpenMPI implementation. This is the library I used to pass messages between the different nodes of the cluster. 
+
+To compile the project, I have included a makefile to be used with Intel's C++ compiler. You might have to modify that depending on where your libraries are located and the distribution of C++ you are using.
 
 What and Where
 ---
