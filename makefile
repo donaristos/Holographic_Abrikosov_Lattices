@@ -27,10 +27,6 @@ LFLAGS= -m64 -fPIC -DEIGEN_NO_DEBUG -DNDEBUG -Wall -multiple-processes \
 
 OBJS=function.o ReadWrite.o NewtonMethod.o CustomFunctions.o
 
-PERTFILES=PertEOMSD.dylib PertEOMSLD.dylib PertEOMSF128.dylib PertEOMSMP.dylib
-
-PERTLINFILES=PertEOMSLinearOpD.dylib PertEOMSLinearOpF128.dylib PertEOMSLinearOpLD.dylib PertEOMSLinearOpMP.dylib
-
 LATTICEFILES=LatticeEOMSD.dylib #LatticeEOMSLD.dylib LatticeEOMSF128.dylib LatticeEOMSMP.dylib
 
 LATTICELINFILES=LatticeLinearOpD.dylib #LatticeLinearOpLD.dylib LatticeLinearOpF128.dylib LatticeLinearOpMP.dylib
@@ -39,11 +35,7 @@ all:: Background Thermod
 
 Background: BackgroundDI #BackgroundLDI BackgroundQI BackgroundMPI
 
-Perturbation: PerturbationDI PerturbationDTI PerturbationLDI PerturbationLDTI PerturbationQI PerturbationQTI PerturbationMPI PerturbationMPTI
-
 Thermod: ThermodDI #ThermodDMPI ThermodLDI ThermodQI ThermodMPI
-
-DCCond: DCCondDI DCCondQI
 
 ThermodDI:: thermoD.o $(LATTICEFILES) $(LATTICELINFILES) ProjectLibs.dylib
 	$(CC) -o ThermodDI thermoD.o ProjectLibs.dylib $(LATTICEFILES) $(LATTICELINFILES) $(LFLAGS) $(HPATHS) $(LPATHS)
@@ -59,36 +51,6 @@ ThermodQI:: thermoQ.o $(LATTICEFILES) $(LATTICELINFILES) ProjectLibs.dylib
 	
 ThermodMPI:: thermoMP.o $(LATTICEFILES) $(LATTICELINFILES) ProjectLibs.dylib
 	$(CC) -o ThermodMPI thermoMP.o ProjectLibs.dylib $(LATTICEFILES) $(LATTICELINFILES) $(LFLAGS) $(HPATHS) $(LPATHS)
-
-PerturbationDI:: perturbationD.o $(PERTFILES) $(PERTLINFILES) ProjectLibs.dylib
-	$(CC) -o PerturbationDI perturbationD.o ProjectLibs.dylib $(PERTFILES) $(PERTLINFILES) $(LFLAGS) $(HPATHS) $(LPATHS)
-
-PerturbationDTI:: perturbationDT.o $(PERTFILES) $(PERTLINFILES) ProjectLibs.dylib
-	$(CC) -o PerturbationDTI perturbationDT.o ProjectLibs.dylib $(PERTFILES) $(PERTLINFILES) $(LFLAGS) $(HPATHS) $(LPATHS)
-	
-PerturbationLDI:: perturbationLD.o $(PERTFILES) $(PERTLINFILES) ProjectLibs.dylib
-	$(CC) -o PerturbationLDI perturbationLD.o ProjectLibs.dylib $(PERTFILES) $(PERTLINFILES) $(LFLAGS) $(HPATHS) $(LPATHS)
-
-PerturbationLDTI:: perturbationLDT.o $(PERTFILES) $(PERTLINFILES) ProjectLibs.dylib
-	$(CC) -o PerturbationLDTI perturbationLDT.o ProjectLibs.dylib $(PERTFILES) $(PERTLINFILES) $(LFLAGS) $(HPATHS) $(LPATHS)
-
-PerturbationQI:: perturbationQ.o $(PERTFILES) $(PERTLINFILES) ProjectLibs.dylib
-	$(CC) -o PerturbationQI perturbationQ.o ProjectLibs.dylib $(PERTFILES) $(PERTLINFILES) $(LFLAGS) $(HPATHS) $(LPATHS)
-
-PerturbationQTI:: perturbationQT.o $(PERTFILES) $(PERTLINFILES) ProjectLibs.dylib
-	$(CC) -o PerturbationQTI perturbationQT.o ProjectLibs.dylib $(PERTFILES) $(PERTLINFILES) $(LFLAGS) $(HPATHS) $(LPATHS)
-
-PerturbationMPI:: perturbationMP.o $(PERTFILES) $(PERTLINFILES) ProjectLibs.dylib
-	$(CC) -o PerturbationMPI perturbationMP.o ProjectLibs.dylib $(PERTFILES) $(PERTLINFILES) $(LFLAGS) $(HPATHS) $(LPATHS)
-
-PerturbationMPTI:: perturbationMPT.o $(PERTFILES) $(PERTLINFILES) ProjectLibs.dylib
-	$(CC) -o PerturbationMPTI perturbationMPT.o ProjectLibs.dylib $(PERTFILES) $(PERTLINFILES) $(LFLAGS) $(HPATHS) $(LPATHS)
-
-DCCondDI:: DCConductivityD.o $(PERTFILES) $(PERTLINFILES) ProjectLibs.dylib
-	$(CC)  -o DCCondDI DCConductivityD.o ProjectLibs.dylib $(PERTFILES) $(PERTLINFILES) $(LFLAGS) $(HPATHS) $(LPATHS)
-
-DCCondQI:: DCConductivityQ.o $(PERTFILES) $(PERTLINFILES) ProjectLibs.dylib
-	$(CC)  -o DCCondQI DCConductivityQ.o ProjectLibs.dylib $(PERTFILES) $(PERTLINFILES) $(LFLAGS) $(HPATHS) $(LPATHS)
 
 BackgroundDI:: backgroundD.o $(LATTICEFILES) $(LATTICELINFILES) ProjectLibs.dylib
 	$(CC) -o BackgroundDI backgroundD.o ProjectLibs.dylib $(LATTICEFILES) $(LATTICELINFILES) $(LFLAGS) $(HPATHS) $(LPATHS)
@@ -128,63 +90,6 @@ thermoQ.o:: Thermo/main.cpp
 	
 thermoMP.o:: Thermo/main.cpp
 	$(CC) $(CPPFLAGS) -DMP $(LPATHS) $(HPATHS) Thermo/main.cpp -o thermoMP.o
-
-perturbationD.o:: PerturbationV2/main.cpp
-	$(CC) $(CPPFLAGS) $(LPATHS) $(HPATHS) PerturbationV2/main.cpp -o perturbationD.o
-
-perturbationDT.o:: PerturbationV2/main.cpp
-	$(CC) $(CPPFLAGS) -DTEST $(LPATHS) $(HPATHS) PerturbationV2/main.cpp -o perturbationDT.o
-	
-perturbationLD.o:: PerturbationV2/main.cpp
-	$(CC) $(CPPFLAGS) -DLONGD $(LPATHS) $(HPATHS) PerturbationV2/main.cpp -o perturbationLD.o
-
-perturbationLDT.o:: PerturbationV2/main.cpp
-	$(CC) $(CPPFLAGS) -DLONGD -DTEST $(LPATHS) $(HPATHS) PerturbationV2/main.cpp -o perturbationLDT.o
-
-perturbationQ.o:: PerturbationV2/main.cpp
-	$(CC) $(CPPFLAGS) -DF128 $(LPATHS) $(HPATHS) PerturbationV2/main.cpp -o perturbationQ.o
-
-perturbationQT.o:: PerturbationV2/main.cpp
-	$(CC) $(CPPFLAGS) -DF128 -DTEST $(LPATHS) $(HPATHS) PerturbationV2/main.cpp -o perturbationQT.o
-	
-perturbationMP.o:: PerturbationV2/main.cpp
-	$(CC) $(CPPFLAGS) -DMP $(LPATHS) $(HPATHS) PerturbationV2/main.cpp -o perturbationMP.o
-
-perturbationMPT.o:: PerturbationV2/main.cpp
-	$(CC) $(CPPFLAGS) -DMP -DTEST $(LPATHS) $(HPATHS) PerturbationV2/main.cpp -o perturbationMPT.o
-	
-DCConductivityD.o:: DCConductivity/main.cpp
-	$(CC) $(CPPFLAGS) $(LPATHS) $(HPATHS) DCConductivity/main.cpp -o DCConductivityD.o
-	
-DCConductivityQ.o:: DCConductivity/main.cpp
-	$(CC) $(CPPFLAGS) -DF128 $(LPATHS) $(HPATHS) DCConductivity/main.cpp -o DCConductivityQ.o
-
-PertEOMSLinearOp%.o:: PertEOMSLinearOp%.cpp
-	$(CC) $(CPPFLAGS) $(LPATHS) $(HPATHS) $< -o $@
-	
-PertEOMSLinearOp%.dylib:: PertEOMSLinearOp%.o $(OBJS)
-	$(CC) -dynamiclib -o $@ $< $(OBJS) $(LFLAGS) $(LPATHS) $(HPATHS) -install_name ../Libs/$@
-	
-PertEOMS%.o:: PertEOMS%.cpp
-	$(CC) $(CPPFLAGS) $(LPATHS) $(HPATHS) $< -o $@
-	
-PertEOMS%.dylib:: PertEOMS%.o $(OBJS)
-	$(CC) -dynamiclib -o $@ $< $(OBJS) $(LFLAGS) $(LPATHS) $(HPATHS) -install_name ../Libs/$@
-	
-PertEOMSLinearOpMP.o:: PertEOMSLinearOpMP.cpp
-	$(CC) $(CPPFLAGS0) $(LPATHS) $(HPATHS) $< -o $@
-	
-PertEOMSLinearOpMP.dylib:: PertEOMSLinearOpMP.o $(OBJS)
-	$(CC) -dynamiclib -o $@ $< $(OBJS) $(LFLAGS) $(LPATHS) $(HPATHS) -install_name ../Libs/$@
-	
-PertEOMSMP.o:: PertEOMSMP.cpp
-	$(CC) $(CPPFLAGS0) $(LPATHS) $(HPATHS) $< -o $@ 
-	
-PertEOMSMP.dylib:: PertEOMSMP.o $(OBJS)
-	$(CC) -dynamiclib -o $@ $< $(OBJS) $(LFLAGS) $(LPATHS) $(HPATHS) -install_name ../Libs/$@
-
-#PEOMS.dylib:: $(PERTFILES) $(PERTLINFILES) ProjectLibs.dylib
-#	$(CC) -dynamiclib -o PEOMS.dylib $(PERTFILES) $(PERTLINFILES) ProjectLibs.dylib $(LFLAGS2) $(HPATHS) $(LPATHS)
 
 LatticeLinearOp%.o:: LatticeLinearOp%.cpp
 	$(CC) $(CPPFLAGS) $(LPATHS) $(HPATHS) $< -o $@

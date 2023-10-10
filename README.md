@@ -22,6 +22,12 @@ Thermodynamics
 ---
 The program in the folder ["Thermo"](Thermo/main.cpp) can be used to construct multiple background solutions. For our purposes we held the temperature, chemical potential and external magnetic field fixed while varying the shape parameters of the lattice.
 
+<figure>
+<img src="images/FE_T05.png" width=70% height=70%>
+</figure>
+
+The figure shows a density plot of the fixed energy of the system as a function of the period $k$ and the angle parametrising the lattice unit cell. The red dot shows the configuration of minimum free energy which is an equilateral triangle. The temparature $T$ for this plot satisfies $T/T_c=1/2$.
+
 Libraries
 ---
 The code is in C++ and it requires the libraries:
